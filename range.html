@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            gap: 65px;
+            place-content: center;
+        }
+
+        input[type="range"] {
+            width: 300px;
+        }
+
+        .box {
+            width: 300px;
+            height: 300px;
+            background-image: linear-gradient(to right, red, blue);
+        }
+
+        @media (max-width: 568px) {
+            .box {
+                width: 150px;
+                height: 150px;
+            }
+
+            input[type="range"] {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box" id="box">
+
+    </div>
+    <div>
+        <input type="range" name="range" id="range" min="0" max="100" value="0">
+        <h1 id="valueOfRange">Radius : 0</h1>
+        <input type="range" name="rotate" id="rotate" min="0" max="360" value="0">
+        <h1 id="valueOfRotate">Rotate : 0</h1>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+    const range = document.getElementById("range");
+    const rotate = document.getElementById("rotate");
+    const value = document.getElementById("valueOfRange");
+    const value1 = document.getElementById("valueOfRotate");
+    const box = document.getElementById("box");
+
+    range.addEventListener('input', () => {
+        box.style.borderRadius = `${range.value / 2}%`;
+        value.textContent = `Radius : ${range.value}`;
+    })
+
+    rotate.addEventListener('input', () => {
+        box.style.transform = `rotate(${rotate.value}deg)`;
+        value1.textContent = `Rotate : ${rotate.value}`;
+    })
+
+</script>
